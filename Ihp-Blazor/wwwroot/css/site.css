@@ -1,0 +1,22 @@
+/**
+ * Variables
+ */
+:root {
+    --main-bg-color-light: #d2d2d2;
+    --main-bg-color-dark: #261f1f;
+}
+
+html {
+    background: var(--main-bg-color-light);
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        color: #aaa;
+        background: var(--main-bg-color-dark);
+    }
+
+    body a {
+        color: #809fff;
+    }
+}
