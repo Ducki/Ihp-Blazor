@@ -1,14 +1,9 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Ihp_Blazor.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages(options => 
-    options.RootDirectory="/Views/Pages");
+builder.Services.AddRazorPages(options =>
+    options.RootDirectory = "/Views/Pages");
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
 
