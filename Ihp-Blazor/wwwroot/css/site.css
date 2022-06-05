@@ -8,6 +8,7 @@
 
 html {
     background: var(--main-bg-color-light);
+    font-family: sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
