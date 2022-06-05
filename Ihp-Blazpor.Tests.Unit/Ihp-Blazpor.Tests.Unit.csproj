@@ -28,4 +28,12 @@
       <ProjectReference Include="..\Ihp-Blazor\Ihp-Blazor.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Data\sources.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
