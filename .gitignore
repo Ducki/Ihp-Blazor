@@ -5,6 +5,8 @@ riderModule.iml
 /_ReSharper.Caches/
 
 
+*.DotSettings.user
+
 ### VisualStudioCode template
 .vscode/*
 !.vscode/settings.json
