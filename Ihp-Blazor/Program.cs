@@ -1,9 +1,13 @@
+using Ihp_Blazor.Brokers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
     options.RootDirectory = "/Views/Pages");
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddScoped<FeedSourcesBroker>();
 
 var app = builder.Build();
 
@@ -23,4 +27,5 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
+app.AddFeedSource(app.Configuration.GetValue<string>("FeedSourceFilePath"));
 app.Run();
