@@ -1,17 +1,20 @@
+using System.Text.Json;
 using Ihp_Blazor.Models;
 using Microsoft.Extensions.Options;
 
 namespace Ihp_Blazor.Brokers;
 
-public class FeedSourcesBroker
+public class FeedSourcesBroker : IFeedSourcesBroker
 {
-    private FeedSourcesOptions _feedSourcesOptions;
+    private readonly FeedSourcesOptions _feedSourcesOptions;
 
     public FeedSourcesBroker(FeedSourcesOptions options) => _feedSourcesOptions = options;
 
-    public void GetFeedSources()
+    public IEnumerable<JsonUrl> GetFeedSources()
     {
-        throw new NotImplementedException();
+        var fileContent = File.ReadAllText(_feedSourcesOptions.FilePath);
+        return JsonSerializer.Deserialize<List<JsonUrl>>(fileContent)
+               ?? throw new InvalidOperationException();
     }
 }
 
