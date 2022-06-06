@@ -4,5 +4,5 @@ namespace Ihp_Blazor.Services;
 
 public interface IFeedsViewService
 {
-    FeedCollectionViewModel GetFeeds();
+    FeedCollectionViewModel GetFeedsViewModel();
 }

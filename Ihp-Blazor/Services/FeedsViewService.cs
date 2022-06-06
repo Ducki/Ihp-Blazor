@@ -4,11 +4,11 @@ namespace Ihp_Blazor.Services;
 
 public class FeedsViewService : IFeedsViewService
 {
-    private readonly FeedsService _feedsService;
+    private readonly IFeedsService _feedsService;
 
-    public FeedsViewService(FeedsService feedsService) => _feedsService = feedsService;
+    public FeedsViewService(IFeedsService feedsService) => _feedsService = feedsService;
 
-    public FeedCollectionViewModel GetFeeds() => MapToFeedCollectionViewModel(_feedsService.GetFeeds());
+    public FeedCollectionViewModel GetFeedsViewModel() => MapToFeedCollectionViewModel(_feedsService.GetFeeds());
 
     private static FeedCollectionViewModel MapToFeedCollectionViewModel(
         IEnumerable<LightSyndicationFeed> lightSyndicationFeeds) =>
