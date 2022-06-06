@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages(options =>
     options.RootDirectory = "/Views/Pages");
 builder.Services.AddServerSideBlazor();
+builder.Services.AddHttpClient();
 
 builder.AddIhpServices();
 

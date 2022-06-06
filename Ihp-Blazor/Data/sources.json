@@ -6,7 +6,7 @@
     "url": "https://rss.golem.de/rss.php?feed=RSS2.0"
   },
   {
-    "url": "https://feeds.macrumors.com/MacRumors-All"
+    "url": "http://feeds.macrumors.com/MacRumors-All"
   },
   {
     "url": "https://www.tagesschau.de/xml/rss2/"
@@ -15,6 +15,6 @@
     "url": "https://www.teltarif.de/feed/news/20.rss2"
   },
   {
-    "url": "https://www.faz.net/rss/aktuell/"
+    "url": "http://www.faz.net/rss/aktuell/"
   }
 ]
