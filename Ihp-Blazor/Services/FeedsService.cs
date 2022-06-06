@@ -7,9 +7,9 @@ namespace Ihp_Blazor.Services;
 
 public class FeedsService : IFeedsService
 {
-    private FeedSourcesBroker _feedSourcesBroker;
+    private IFeedSourcesBroker _feedSourcesBroker;
 
-    public FeedsService(FeedSourcesBroker feedSourcesBroker) => _feedSourcesBroker = feedSourcesBroker;
+    public FeedsService(IFeedSourcesBroker feedSourcesBroker) => _feedSourcesBroker = feedSourcesBroker;
 
     public IEnumerable<LightSyndicationFeed> GetFeeds()
     {
