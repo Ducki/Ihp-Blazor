@@ -1,8 +1,23 @@
 <div>
-    <strong>@FeedCollectionViewModel.SiteFeeds.First().SiteName</strong>
-    <ul>
 
-    </ul>
+    @if (FeedCollectionViewModel is not null)
+    {
+        @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
+        {
+            <ul>
+                @foreach (var feedItem in feed.FeedItems)
+                {
+                    <FeedItem SyndicationItem="feedItem"/>
+                }
+            </ul>
+        }
+    }
+    else
+    {
+        <p>Loading</p>
+    }
+
+    <b></b>
 </div>
 
 @code {

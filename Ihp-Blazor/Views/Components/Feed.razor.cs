@@ -6,11 +6,12 @@ namespace Ihp_Blazor.Views.Components;
 
 public partial class Feed : ComponentBase
 {
-    [Inject] public IFeedsViewService FeedsViewService { get; set; } = null!;
-    private FeedCollectionViewModel FeedCollectionViewModel { get; set; } = null!;
+    [Inject] private IFeedsViewService FeedsViewService { get; set; } = null!;
+    private FeedCollectionViewModel? FeedCollectionViewModel { get; set; }
 
-    protected override void OnInitialized()
+
+    protected override async Task OnInitializedAsync()
     {
-        FeedCollectionViewModel = FeedsViewService.GetFeedsViewModel();
+        FeedCollectionViewModel = await FeedsViewService.GetFeedsViewModel();
     }
 }
