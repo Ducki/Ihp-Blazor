@@ -8,7 +8,9 @@ public class FeedsViewService : IFeedsViewService
 
     public FeedsViewService(IFeedsService feedsService) => _feedsService = feedsService;
 
-    public FeedCollectionViewModel GetFeedsViewModel() => MapToFeedCollectionViewModel(_feedsService.GetFeeds());
+    public FeedCollectionViewModel GetFeedsViewModel() =>
+        MapToFeedCollectionViewModel(
+            _feedsService.GetFeeds());
 
     private static FeedCollectionViewModel MapToFeedCollectionViewModel(
         IEnumerable<LightSyndicationFeed> lightSyndicationFeeds) =>

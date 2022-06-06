@@ -8,8 +8,13 @@ namespace Ihp_Blazor.Services;
 public class FeedsService : IFeedsService
 {
     private IFeedSourcesBroker _feedSourcesBroker;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public FeedsService(IFeedSourcesBroker feedSourcesBroker) => _feedSourcesBroker = feedSourcesBroker;
+    public FeedsService(IFeedSourcesBroker feedSourcesBroker, IHttpClientFactory httpClientFactory)
+    {
+        _feedSourcesBroker = feedSourcesBroker;
+        _httpClientFactory = httpClientFactory;
+    }
 
     public IEnumerable<LightSyndicationFeed> GetFeeds()
     {
@@ -18,20 +23,25 @@ public class FeedsService : IFeedsService
         var downloadJobs = feedUrls.Select(url =>
                 DownloadFeedAsync(url.Url))
             .ToList();
-
-        Task.WaitAll(downloadJobs.ToArray());
-
+        Console.WriteLine($"After building download jobs list");
+        // Task.WaitAll(downloadJobs.ToArray(), 500);
+        Console.WriteLine($"After waiting jobs list");
         return downloadJobs.Select(d => d.Result).ToList();
     }
 
-    private static async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
+    private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
     {
         var requestUri = new Uri(url);
-
+        Console.WriteLine($"Downloading Feed {url}");
         Stream responseStream;
         try
         {
-            responseStream = await new HttpClient().GetStreamAsync(requestUri);
+            Console.WriteLine($"Before GetAtreamAsync / {url}");
+            var client = _httpClientFactory.CreateClient();
+            var foo = await client.GetStringAsync(url);
+            Console.WriteLine(foo);
+            responseStream = await client.GetStreamAsync(requestUri);
+            Console.WriteLine($"After GetAtreamAsync {url}");
         }
         catch (Exception e)
         {
@@ -60,6 +70,7 @@ public class FeedsService : IFeedsService
 
     private static SyndicationFeed ReadSyndicationFeed(Stream responseStream)
     {
+        Console.WriteLine($"Reading XML ");
         var xmlreader = XmlReader.Create(responseStream);
         return SyndicationFeed.Load(xmlreader);
     }
