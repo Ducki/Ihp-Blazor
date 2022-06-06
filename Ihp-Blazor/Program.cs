@@ -1,6 +1,4 @@
-using Ihp_Blazor.Brokers;
-using Ihp_Blazor.Models;
-using Ihp_Blazor.Services;
+using Ihp_Blazor.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,17 +7,7 @@ builder.Services.AddRazorPages(options =>
     options.RootDirectory = "/Views/Pages");
 builder.Services.AddServerSideBlazor();
 
-builder.Services.AddScoped<IFeedSourcesBroker>(provider =>
-{
-    var options = new FeedSourcesOptions()
-    {
-        FilePath = builder.Configuration.GetValue<string>("FeedSourceFilePath")
-    };
-
-    return new FeedSourcesBroker(options);
-});
-builder.Services.AddScoped<IFeedsService, FeedsService>();
-builder.Services.AddScoped<IFeedsViewService, FeedsViewService>();
+builder.AddIhpServices();
 
 var app = builder.Build();
 
