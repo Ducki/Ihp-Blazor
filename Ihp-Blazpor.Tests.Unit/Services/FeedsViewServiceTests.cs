@@ -8,7 +8,7 @@ namespace Ihp_Blazpor.Tests.Unit.Services;
 public class FeedsViewServiceTests
 {
     [Fact]
-    public void ShouldGetFeeds()
+    public async Task ShouldGetFeeds()
     {
         // Arrange
 
@@ -40,7 +40,7 @@ public class FeedsViewServiceTests
         var feedsViewService = new FeedsViewService(fakeFeedService);
 
         // Act
-        var feeds = feedsViewService.GetFeedsViewModel();
+        var feeds = await feedsViewService.GetFeedsViewModel();
 
         // Assert
         feeds.SiteFeeds.Should().BeEquivalentTo(expectedFeeds);

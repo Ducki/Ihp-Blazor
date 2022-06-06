@@ -4,5 +4,5 @@ namespace Ihp_Blazor.Services;
 
 public interface IFeedsService
 {
-    IEnumerable<LightSyndicationFeed> GetFeeds();
+    Task<IEnumerable<LightSyndicationFeed>> GetFeeds();
 }

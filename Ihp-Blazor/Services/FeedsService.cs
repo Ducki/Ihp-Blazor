@@ -16,32 +16,29 @@ public class FeedsService : IFeedsService
         _httpClientFactory = httpClientFactory;
     }
 
-    public IEnumerable<LightSyndicationFeed> GetFeeds()
+    public async Task<IEnumerable<LightSyndicationFeed>> GetFeeds()
     {
         var feedUrls = _feedSourcesBroker.GetFeedSources();
 
         var downloadJobs = feedUrls.Select(url =>
                 DownloadFeedAsync(url.Url))
             .ToList();
-        Console.WriteLine($"After building download jobs list");
-        // Task.WaitAll(downloadJobs.ToArray(), 500);
-        Console.WriteLine($"After waiting jobs list");
+
+        await Task.WhenAll(downloadJobs);
+
+
         return downloadJobs.Select(d => d.Result).ToList();
     }
 
     private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
     {
         var requestUri = new Uri(url);
-        Console.WriteLine($"Downloading Feed {url}");
         Stream responseStream;
+
         try
         {
-            Console.WriteLine($"Before GetAtreamAsync / {url}");
             var client = _httpClientFactory.CreateClient();
-            var foo = await client.GetStringAsync(url);
-            Console.WriteLine(foo);
             responseStream = await client.GetStreamAsync(requestUri);
-            Console.WriteLine($"After GetAtreamAsync {url}");
         }
         catch (Exception e)
         {
@@ -70,7 +67,6 @@ public class FeedsService : IFeedsService
 
     private static SyndicationFeed ReadSyndicationFeed(Stream responseStream)
     {
-        Console.WriteLine($"Reading XML ");
         var xmlreader = XmlReader.Create(responseStream);
         return SyndicationFeed.Load(xmlreader);
     }
