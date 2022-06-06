@@ -40,12 +40,10 @@ public class FeedsService : IFeedsService
             responseStream = await new HttpClient().GetStreamAsync(requestUri);
         }
 
-        var xmlreader = XmlReader.Create(responseStream);
-        var syndicationFeed = SyndicationFeed.Load(xmlreader);
-
+        var syndicationFeed = ReadSyndicationFeed(responseStream);
         var feedItems = syndicationFeed.Items.Take(8);
 
-        var feed = feedItems.Select(i => new LightSyndicationItem()
+        var lightSyndicationItems = feedItems.Select(i => new LightSyndicationItem()
         {
             Title = i.Title.Text,
             PublishDate = i.PublishDate.DateTime,
@@ -55,8 +53,14 @@ public class FeedsService : IFeedsService
 
         return new LightSyndicationFeed()
         {
-            FeedItems = feed.ToList(),
+            FeedItems = lightSyndicationItems.ToList(),
             SiteName = syndicationFeed.Title.Text
         };
+    }
+
+    private static SyndicationFeed ReadSyndicationFeed(Stream responseStream)
+    {
+        var xmlreader = XmlReader.Create(responseStream);
+        return SyndicationFeed.Load(xmlreader);
     }
 }
