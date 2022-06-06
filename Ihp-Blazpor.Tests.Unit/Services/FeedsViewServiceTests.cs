@@ -8,7 +8,7 @@ namespace Ihp_Blazpor.Tests.Unit.Services;
 public class FeedsViewServiceTests
 {
     [Fact]
-    public async Task ShouldGetFeeds()
+    public async void ShouldGetFeeds()
     {
         // Arrange
 
