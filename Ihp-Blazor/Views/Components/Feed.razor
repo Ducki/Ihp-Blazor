@@ -4,6 +4,7 @@
     {
         @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
         {
+            <strong>@feed.SiteName</strong>
             <ul>
                 @foreach (var feedItem in feed.FeedItems)
                 {
