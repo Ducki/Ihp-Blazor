@@ -6,7 +6,7 @@ using Moq;
 
 namespace Ihp_Blazpor.Tests.Unit.Views.Components;
 
-public class FeedComponentTests : TestContext
+public class FeedItemComponentTests : TestContext
 {
     [Fact]
     public void ShouldRenderComponentState()
