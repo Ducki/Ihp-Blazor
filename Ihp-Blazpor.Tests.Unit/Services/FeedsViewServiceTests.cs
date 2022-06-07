@@ -36,8 +36,11 @@ public class FeedsViewServiceTests
             }
         };
 
-        var fakeFeedService = Mock.Of<IFeedsService>(service => service.GetFeeds() == fakeFeeds);
-        var feedsViewService = new FeedsViewService(fakeFeedService);
+        var fakeFeedService = new Mock<IFeedsService>();
+        fakeFeedService
+            .Setup(service => service.GetFeeds())
+            .ReturnsAsync(fakeFeeds);
+        var feedsViewService = new FeedsViewService(fakeFeedService.Object);
 
         // Act
         var feeds = await feedsViewService.GetFeedsViewModel();
