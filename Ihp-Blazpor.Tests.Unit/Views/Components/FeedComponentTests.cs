@@ -44,5 +44,7 @@ public class FeedComponentTests : TestContext
         // Assert
         renderedComponent.Instance.Should().NotBeNull();
         renderedComponent.Markup.Should().Contain("Foo");
+        mockFeedsViewService.Verify(service => service.GetFeedsViewModel(), Times.Once);
+        mockFeedsViewService.VerifyNoOtherCalls();
     }
 }
