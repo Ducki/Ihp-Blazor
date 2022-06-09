@@ -12,24 +12,24 @@ public class FeedsViewServiceTests
     {
         // Arrange
 
-        IEnumerable<LightSyndicationFeed> fakeFeeds = new List<LightSyndicationFeed>()
+        IEnumerable<LightSyndicationFeed> fakeFeeds = new List<LightSyndicationFeed>
         {
             new()
             {
                 SiteName = "One",
-                FeedItems = new List<LightSyndicationItem>()
+                FeedItems = new List<LightSyndicationItem>
                 {
                     new Mock<LightSyndicationItem>().Object
                 }
             }
         };
 
-        IEnumerable<LightSyndicationFeed> expectedFeeds = new List<LightSyndicationFeed>()
+        IEnumerable<LightSyndicationFeed> expectedFeeds = new List<LightSyndicationFeed>
         {
             new()
             {
                 SiteName = "One",
-                FeedItems = new List<LightSyndicationItem>()
+                FeedItems = new List<LightSyndicationItem>
                 {
                     new Mock<LightSyndicationItem>().Object
                 }

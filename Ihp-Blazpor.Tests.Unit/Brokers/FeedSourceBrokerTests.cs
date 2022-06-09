@@ -10,13 +10,13 @@ public class FeedSourceBrokerTests
     public void ShouldGetFeedUrls()
     {
         // Arrange
-        var expectedUrls = new List<JsonUrl>()
+        var expectedUrls = new List<JsonUrl>
         {
             new() { Url = "url1" },
             new() { Url = "url2" }
         };
 
-        var brokerOptions = new FeedSourcesOptions()
+        var brokerOptions = new FeedSourcesOptions
         {
             FilePath = "Data/sources.json"
         };

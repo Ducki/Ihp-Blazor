@@ -14,14 +14,14 @@ public class FeedComponentTests : TestContext
     public void ShouldRenderComponentState()
     {
         // Arrange
-        var fakeFeedCollectionViewModel = new FeedCollectionViewModel()
+        var fakeFeedCollectionViewModel = new FeedCollectionViewModel
         {
-            SiteFeeds = new List<LightSyndicationFeed>()
+            SiteFeeds = new List<LightSyndicationFeed>
             {
                 new()
                 {
                     SiteName = "Foo",
-                    FeedItems = new List<LightSyndicationItem>()
+                    FeedItems = new List<LightSyndicationItem>
                     {
                         new()
                     }
@@ -35,7 +35,7 @@ public class FeedComponentTests : TestContext
                 service.GetFeedsViewModel())
             .ReturnsAsync(fakeFeedCollectionViewModel);
 
-        Services.AddScoped(s => mockFeedsViewService.Object);
+        Services.AddScoped(_ => mockFeedsViewService.Object);
 
         // Act
         var renderedComponent =

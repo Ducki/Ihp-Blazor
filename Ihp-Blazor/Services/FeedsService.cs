@@ -7,7 +7,7 @@ namespace Ihp_Blazor.Services;
 
 public class FeedsService : IFeedsService
 {
-    private IFeedSourcesBroker _feedSourcesBroker;
+    private readonly IFeedSourcesBroker _feedSourcesBroker;
     private readonly IHttpClientFactory _httpClientFactory;
 
     public FeedsService(IFeedSourcesBroker feedSourcesBroker, IHttpClientFactory httpClientFactory)
@@ -25,7 +25,6 @@ public class FeedsService : IFeedsService
             .ToList();
 
         await Task.WhenAll(downloadJobs);
-
 
         return downloadJobs.Select(d => d.Result).ToList();
     }
@@ -50,7 +49,7 @@ public class FeedsService : IFeedsService
         var syndicationFeed = ReadSyndicationFeed(responseStream);
         var feedItems = syndicationFeed.Items.Take(8);
 
-        var lightSyndicationItems = feedItems.Select(i => new LightSyndicationItem()
+        var lightSyndicationItems = feedItems.Select(i => new LightSyndicationItem
         {
             Title = i.Title.Text,
             PublishDate = i.PublishDate.DateTime,

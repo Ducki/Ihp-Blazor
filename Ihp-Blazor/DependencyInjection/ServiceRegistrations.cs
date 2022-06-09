@@ -8,9 +8,9 @@ public static class ServiceRegistrations
 {
     public static void AddIhpServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IFeedSourcesBroker>(provider =>
+        builder.Services.AddScoped<IFeedSourcesBroker>(_ =>
         {
-            var options = new FeedSourcesOptions()
+            var options = new FeedSourcesOptions
             {
                 FilePath = builder.Configuration.GetValue<string>("FeedSourceFilePath")
             };
