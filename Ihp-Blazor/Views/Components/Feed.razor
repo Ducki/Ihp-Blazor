@@ -1,8 +1,8 @@
-<div class="feed-wrapper">
-    @if (FeedCollectionViewModel is not null)
+@if (FeedCollectionViewModel is not null)
+{
+    @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
     {
-        @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
-        {
+        <div class="feed-wrapper">
             <strong class="feed-title">@feed.SiteName</strong>
             <ul class="feed-items">
                 @foreach (var feedItem in feed.FeedItems)
@@ -10,10 +10,10 @@
                     <FeedItem SyndicationItem="feedItem"/>
                 }
             </ul>
-        }
+        </div>
     }
-    else
-    {
-        <p>Loading</p>
-    }
-</div>
+}
+else
+{
+    <p>Loading</p>
+}

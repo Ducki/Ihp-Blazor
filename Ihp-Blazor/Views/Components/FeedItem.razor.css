@@ -1,0 +1,23 @@
+.feed-item {
+    flex-grow: 1;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.feed-item p {
+    margin-bottom: .125rem;
+    margin-top: .125rem;
+    padding: 0;
+}
+
+.feed-item em {
+    margin-right: 0.5em;
+}

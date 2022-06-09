@@ -9,20 +9,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css"/>
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map"/>
+        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
+        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Views\Bases"/>
+        <Folder Include="Views\Bases" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0"/>
+        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Data\sources.json"/>
+        <Resource Include="Data\sources.json" />
     </ItemGroup>
 
 </Project>
