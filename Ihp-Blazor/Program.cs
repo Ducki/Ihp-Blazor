@@ -1,4 +1,5 @@
 using Ihp_Blazor.DependencyInjection;
+using Tailwind;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
+if (app.Environment.IsDevelopment())
+    app.RunTailwind("tailwind", "./");
 
 app.UseHttpsRedirection();
 

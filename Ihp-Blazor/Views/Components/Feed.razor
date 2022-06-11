@@ -2,7 +2,7 @@
 {
     @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
     {
-        <div class="feed-wrapper">
+        <div class="feed-wrapper border border-green-700">
             <strong class="feed-title">@feed.SiteName</strong>
             <ul class="feed-items">
                 @foreach (var feedItem in feed.FeedItems)
