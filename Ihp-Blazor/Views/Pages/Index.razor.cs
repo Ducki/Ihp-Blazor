@@ -9,7 +9,7 @@ public partial class Index : ComponentBase
     [Inject] private IFeedsViewService FeedsViewService { get; set; } = null!;
     private FeedCollectionViewModel? FeedCollectionViewModel { get; set; }
 
-    protected override async void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         FeedCollectionViewModel = await FeedsViewService.GetFeedsViewModel();
     }
