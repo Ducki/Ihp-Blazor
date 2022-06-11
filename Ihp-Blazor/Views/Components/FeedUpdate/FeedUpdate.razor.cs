@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Ihp_Blazor.Views.Components;
+namespace Ihp_Blazor.Views.Components.FeedUpdate;
 
 public partial class FeedUpdate : ComponentBase
 {

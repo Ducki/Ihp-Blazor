@@ -2,7 +2,7 @@ using Bunit;
 using FluentAssertions;
 using Ihp_Blazor.Models;
 using Ihp_Blazor.Services;
-using Ihp_Blazor.Views.Components;
+using Ihp_Blazor.Views.Components.Feed;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 

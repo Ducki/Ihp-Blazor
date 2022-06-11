@@ -1,7 +1,7 @@
 using Bunit;
 using FluentAssertions;
 using Ihp_Blazor.Models;
-using Ihp_Blazor.Views.Components;
+using Ihp_Blazor.Views.Components.FeedItem;
 
 namespace Ihp_Blazpor.Tests.Unit.Views.Components;
 

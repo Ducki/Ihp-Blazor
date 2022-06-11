@@ -26,4 +26,9 @@
         <Resource Include="Data\sources.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Views\Components\FeedItem\FeedItem.razor.css" />
+      <Content Include="Views\Components\Feed\Feed.razor.css" />
+    </ItemGroup>
+
 </Project>
