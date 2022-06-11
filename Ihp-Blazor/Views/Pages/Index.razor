@@ -1,7 +1,10 @@
 ﻿@page "/"
 <PageTitle>Index</PageTitle>
+<header class="text-center">
+    <FeedUpdate TriggerUpdate="UpdateTriggered"></FeedUpdate>
+</header>
 
-Feed:
+<hr/>
 <div class="flex flex-wrap justify-evenly">
-    <Feed/>
+    <Feed FeedCollectionViewModel="FeedCollectionViewModel"/>
 </div>
