@@ -2,8 +2,8 @@
 {
     @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
     {
-        <div class="feed-wrapper border border-green-700">
-            <strong class="feed-title">@feed.SiteName</strong>
+        <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
+            <strong class="dark:text-stone-400">@feed.SiteName</strong>
             <ul class="feed-items">
                 @foreach (var feedItem in feed.FeedItems)
                 {
