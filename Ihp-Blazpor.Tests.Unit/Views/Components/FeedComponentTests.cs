@@ -1,17 +1,14 @@
 using Bunit;
 using FluentAssertions;
 using Ihp_Blazor.Models;
-using Ihp_Blazor.Services;
 using Ihp_Blazor.Views.Components.Feed;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace Ihp_Blazpor.Tests.Unit.Views.Components;
 
 public class FeedComponentTests : TestContext
 {
     [Fact]
-    public void ShouldRenderComponentState()
+    public void ShouldRenderFeedComponentState()
     {
         // Arrange
         var fakeFeedCollectionViewModel = new FeedCollectionViewModel
@@ -29,22 +26,16 @@ public class FeedComponentTests : TestContext
             }
         };
 
-        var mockFeedsViewService = new Mock<IFeedsViewService>();
-        mockFeedsViewService
-            .Setup(service =>
-                service.GetFeedsViewModel())
-            .ReturnsAsync(fakeFeedCollectionViewModel);
-
-        Services.AddScoped(_ => mockFeedsViewService.Object);
-
         // Act
         var renderedComponent =
-            RenderComponent<Feed>();
+            RenderComponent<Feed>(parameterBuilder =>
+                parameterBuilder.Add(param =>
+                    param.FeedCollectionViewModel, fakeFeedCollectionViewModel));
 
         // Assert
         renderedComponent.Instance.Should().NotBeNull();
-        renderedComponent.Markup.Should().Contain("Foo");
-        mockFeedsViewService.Verify(service => service.GetFeedsViewModel(), Times.Once);
-        mockFeedsViewService.VerifyNoOtherCalls();
+        renderedComponent.WaitForAssertion(() =>
+                renderedComponent.Markup.Should().Contain("Foo"),
+            TimeSpan.FromSeconds(2));
     }
 }
