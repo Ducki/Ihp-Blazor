@@ -10,16 +10,16 @@ public partial class Index : ComponentBase
     [Inject] private ILogger<Index> Logger { get; set; } = null!;
     private FeedCollectionViewModel? FeedCollectionViewModel { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        Logger.LogInformation("Getting initial feeds");
-        FeedCollectionViewModel = await FeedsViewService.GetFeedsViewModel();
-    }
+    protected override void OnInitialized() =>
+        Logger.LogInformation("First initialization");
+
 
     protected override async void OnAfterRender(bool firstRender)
     {
         Logger.LogInformation("Getting new feeds after render");
         FeedCollectionViewModel = await FeedsViewService.GetFeedsViewModel();
+
+        if (firstRender) StateHasChanged();
     }
 
     private void UpdateTriggered() =>

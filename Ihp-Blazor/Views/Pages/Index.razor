@@ -1,6 +1,6 @@
 ﻿@page "/"
-@using Ihp_Blazor.Views.Components.Feed
 @using Ihp_Blazor.Views.Components.FeedUpdate
+@using Ihp_Blazor.Views.Components.Feed
 <PageTitle>Index</PageTitle>
 <header class="text-center">
     <FeedUpdate TriggerUpdate="UpdateTriggered"></FeedUpdate>
@@ -8,5 +8,5 @@
 
 <hr/>
 <div class="flex flex-wrap justify-evenly">
-    <Feed FeedCollectionViewModel="FeedCollectionViewModel"/>
+    <Feed FeedCollectionViewModel="@FeedCollectionViewModel"/>
 </div>

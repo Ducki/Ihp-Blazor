@@ -9,16 +9,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Views\Bases"/>
+        <Folder Include="Views\Bases" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0"/>
-        <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.0.0-beta3"/>
+        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
+        <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.0.0-beta3" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Data\sources.json"/>
+        <Resource Include="Data\sources.json" />
     </ItemGroup>
 
 </Project>
