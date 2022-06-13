@@ -7,28 +7,17 @@
         <RootNamespace>Ihp_Blazor</RootNamespace>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
-
+    
     <ItemGroup>
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
-        <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+        <Folder Include="Views\Bases"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Views\Bases" />
+        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.ServiceModel.Syndication" Version="6.0.0" />
-        <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.0.0-beta3" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Resource Include="Data\sources.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="Views\Components\FeedItem\FeedItem.razor.css" />
-      <Content Include="Views\Components\Feed\Feed.razor.css" />
+        <Resource Include="Data\sources.json"/>
     </ItemGroup>
 
 </Project>

@@ -5,9 +5,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Ihp-Blazor/Ihp-Blazor.csproj", "Ihp-Blazor/"]
+COPY ["Ihp-Blazor.csproj", "Ihp-Blazor/"]
 RUN dotnet restore "Ihp-Blazor/Ihp-Blazor.csproj"
-COPY . .
+COPY . Ihp-Blazor/
 WORKDIR "/src/Ihp-Blazor"
 RUN dotnet build "Ihp-Blazor.csproj" -c Release -o /app/build
 
