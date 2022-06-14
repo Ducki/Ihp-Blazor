@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.1.2 | MIT License | https://tailwindcss.com
+! tailwindcss v3.1.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -675,13 +675,11 @@ body {
   background-color: rgb(250 250 249 / var(--tw-bg-opacity));
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    --tw-bg-opacity: 1;
-    background-color: rgb(28 25 23 / var(--tw-bg-opacity));
-    --tw-text-opacity: 1;
-    color: rgb(249 250 251 / var(--tw-text-opacity));
-  }
+.dark body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(28 25 23 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(249 250 251 / var(--tw-text-opacity));
 }
 
 a:link {
@@ -691,11 +689,9 @@ a:link {
           text-decoration-line: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  a:link {
-    --tw-text-opacity: 1;
-    color: rgb(245 158 11 / var(--tw-text-opacity));
-  }
+.dark a:link {
+  --tw-text-opacity: 1;
+  color: rgb(245 158 11 / var(--tw-text-opacity));
 }
 
 a:visited {
@@ -705,11 +701,9 @@ a:visited {
           text-decoration-line: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  a:visited {
-    --tw-text-opacity: 1;
-    color: rgb(120 53 15 / var(--tw-text-opacity));
-  }
+.dark a:visited {
+  --tw-text-opacity: 1;
+  color: rgb(120 53 15 / var(--tw-text-opacity));
 }
 
 a:hover {
@@ -719,11 +713,9 @@ a:hover {
           text-decoration-line: underline;
 }
 
-@media (prefers-color-scheme: dark) {
-  a:hover {
-    --tw-text-opacity: 1;
-    color: rgb(254 215 170 / var(--tw-text-opacity));
-  }
+.dark a:hover {
+  --tw-text-opacity: 1;
+  color: rgb(254 215 170 / var(--tw-text-opacity));
 }
 
 a:active {
@@ -762,19 +754,17 @@ BLAZOR INTERNALS
   content: "An error has occurred."
 }
 
-@media (prefers-color-scheme: dark) {
-  .dark\:border-stone-700 {
-    --tw-border-opacity: 1;
-    border-color: rgb(68 64 60 / var(--tw-border-opacity));
-  }
+.dark .dark\:border-stone-700 {
+  --tw-border-opacity: 1;
+  border-color: rgb(68 64 60 / var(--tw-border-opacity));
+}
 
-  .dark\:text-stone-400 {
-    --tw-text-opacity: 1;
-    color: rgb(168 162 158 / var(--tw-text-opacity));
-  }
+.dark .dark\:text-stone-400 {
+  --tw-text-opacity: 1;
+  color: rgb(168 162 158 / var(--tw-text-opacity));
+}
 
-  .dark\:text-stone-600 {
-    --tw-text-opacity: 1;
-    color: rgb(87 83 78 / var(--tw-text-opacity));
-  }
+.dark .dark\:text-stone-600 {
+  --tw-text-opacity: 1;
+  color: rgb(87 83 78 / var(--tw-text-opacity));
 }
