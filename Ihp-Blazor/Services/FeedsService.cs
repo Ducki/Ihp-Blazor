@@ -21,33 +21,33 @@ public class FeedsService : IFeedsService
         var feedUrls = _feedSourcesBroker.GetFeedSources();
 
         var downloadJobs = feedUrls.Select(url =>
-                DownloadFeedAsync(url: url.Url))
+                DownloadFeedAsync(url.Url))
             .ToList();
 
-        await Task.WhenAll(tasks: downloadJobs);
+        await Task.WhenAll(downloadJobs);
 
         return downloadJobs.Select(d => d.Result).ToList();
     }
 
     private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
     {
-        var requestUri = new Uri(uriString: url);
-        string responseStream;
-        var client = _httpClientFactory.CreateClient();
+        var requestUri = new Uri(url);
+        Stream responseStream;
 
         try
         {
-            responseStream = await client.GetStringAsync(requestUri: requestUri);
+            var client = _httpClientFactory.CreateClient();
+            responseStream = await client.GetStreamAsync(requestUri);
         }
         catch (Exception e)
         {
             // Try again …
-            Console.WriteLine(value: e);
-            responseStream = await client.GetStringAsync(requestUri: requestUri);
+            Console.WriteLine(e);
+            responseStream = await new HttpClient().GetStreamAsync(requestUri);
         }
 
-        var syndicationFeed = ReadSyndicationFeed(responseStream: responseStream);
-        var feedItems = syndicationFeed.Items.Take(count: 8);
+        var syndicationFeed = ReadSyndicationFeed(responseStream);
+        var feedItems = syndicationFeed.Items.Take(8);
 
         var lightSyndicationItems = feedItems.Select(i => new LightSyndicationItem
         {
@@ -64,9 +64,9 @@ public class FeedsService : IFeedsService
         };
     }
 
-    private static SyndicationFeed ReadSyndicationFeed(string responseStream)
+    private static SyndicationFeed ReadSyndicationFeed(Stream responseStream)
     {
-        var xmlreader = XmlReader.Create(inputUri: responseStream);
-        return SyndicationFeed.Load(reader: xmlreader);
+        var xmlreader = XmlReader.Create(responseStream);
+        return SyndicationFeed.Load(xmlreader);
     }
 }
