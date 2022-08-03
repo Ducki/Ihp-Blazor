@@ -14,11 +14,11 @@ public partial class FeedUpdate : ComponentBase
 
     private void UpdateFeeds()
     {
-        Console.WriteLine("Clicked on Update Feeds");
+        Console.WriteLine(value: "Clicked on Update Feeds");
         TriggerUpdate.InvokeAsync();
 
         LastUpdateTime = GetCurrentDateTimeOffset();
     }
 
-    private static DateTimeOffset GetCurrentDateTimeOffset() => DateTimeOffset.Now.ToLocalTime();
+    private static DateTimeOffset GetCurrentDateTimeOffset() => DateTimeOffset.Now;
 }
