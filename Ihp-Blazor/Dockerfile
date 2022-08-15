@@ -17,6 +17,7 @@ RUN dotnet publish "Ihp-Blazor.csproj" -c Release -o /app/publish
 FROM base AS final
 ENV TZ=Europe/Berlin
 ENV PORT=80
+
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT dotnet Ihp-Blazor.dll --urls http://+:{PORT}
+ENTRYPOINT dotnet Ihp-Blazor.dll --urls http://+:${PORT}
