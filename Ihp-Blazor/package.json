@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "tailwind": "NODE_ENV=development ./node_modules/tailwindcss/lib/cli.js -i ./Views/Styles/Base.css -o ./wwwroot/css/output.css --watch"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.1.3"
-  }
-}
