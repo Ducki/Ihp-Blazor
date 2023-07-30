@@ -1,27 +1,35 @@
-using Ihp_Blazor.DependencyInjection;
-using Tailwind;
+using Ihp_Blazor.Brokers;
+using Ihp_Blazor.Models;
+using Ihp_Blazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddRazorPages(options =>
     options.RootDirectory = "/Views/Pages");
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 
-builder.AddIhpServices();
+builder.Services.AddScoped<IFeedSourcesBroker>(_ =>
+{
+    var options = new FeedSourcesOptions
+    {
+        FilePath = builder.Configuration.GetValue<string>("FeedSourceFilePath")!
+    };
+
+    return new FeedSourcesBroker(options);
+});
+
+builder.Services.AddScoped<IFeedsService, FeedsService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
-
-if (app.Environment.IsDevelopment())
-    app.RunTailwind("tailwind", "./");
 
 app.UseHttpsRedirection();
 

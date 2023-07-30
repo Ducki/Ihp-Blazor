@@ -1,7 +1,8 @@
+@using Ihp_Blazor.Models
 @using Ihp_Blazor.Views.Components.FeedItem
-@if (FeedCollectionViewModel is not null)
+@if (Feeds is not null)
 {
-    @foreach (var feed in FeedCollectionViewModel.SiteFeeds)
+    @foreach (var feed in Feeds)
     {
         <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
 
@@ -18,4 +19,10 @@
 else
 {
     <p>Loading</p>
+}
+
+@code
+{
+    [Parameter]
+    public IEnumerable<LightSyndicationFeed>? Feeds { get; set; }
 }

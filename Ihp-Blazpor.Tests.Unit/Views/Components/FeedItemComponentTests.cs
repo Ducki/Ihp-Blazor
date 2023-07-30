@@ -15,6 +15,7 @@ public class FeedItemComponentTests : TestContext
         {
             Title = "Foo"
         };
+
         // Act
         var renderedComponent = RenderComponent<FeedItem>(builder =>
             builder.Add(item => item.SyndicationItem, syndicationFeedItem));

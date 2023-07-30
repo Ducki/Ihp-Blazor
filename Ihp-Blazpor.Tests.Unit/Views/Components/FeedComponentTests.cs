@@ -11,26 +11,25 @@ public class FeedComponentTests : TestContext
     public void ShouldRenderFeedComponentState()
     {
         // Arrange
-        var fakeFeedCollectionViewModel = new FeedCollectionViewModel
-        {
-            SiteFeeds = new List<LightSyndicationFeed>
-            {
-                new()
+        var fakeFeedCollectionViewModel =
+                new List<LightSyndicationFeed>
                 {
-                    SiteName = "Foo",
-                    FeedItems = new List<LightSyndicationItem>
+                    new()
                     {
-                        new()
+                        SiteName = "Foo",
+                        FeedItems = new List<LightSyndicationItem>
+                        {
+                            new()
+                        }
                     }
                 }
-            }
-        };
+            ;
 
         // Act
         var renderedComponent =
             RenderComponent<Feed>(parameterBuilder =>
                 parameterBuilder.Add(param =>
-                    param.FeedCollectionViewModel, fakeFeedCollectionViewModel));
+                    param.Feeds, fakeFeedCollectionViewModel));
 
         // Assert
         renderedComponent.Instance.Should().NotBeNull();
