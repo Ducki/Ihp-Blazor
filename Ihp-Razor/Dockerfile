@@ -5,7 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["Ihp-Razor/Ihp-Razor.csproj", "Ihp-Razor/"]
+COPY ["Ihp-Razor.csproj", "Ihp-Razor/"]
 RUN dotnet restore "Ihp-Razor/Ihp-Razor.csproj"
 COPY . .
 WORKDIR "/src/Ihp-Razor"
