@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<header class="text-center">
+   <h1>Index</h1>
+   <p>Updated <em>@DateTime.Now.ToShortTimeString() Uhr</em></p>
+</header>
+
+<hr/>
+
+<div class="flex flex-wrap justify-evenly">
+     @foreach (var feed in Model.Feeds)
+        {
+            <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
+    
+                <strong class="dark:text-stone-400">@feed.SiteName</strong>
+                <ul class="feed-items">
+                    @foreach (var feedItem in feed.FeedItems)
+                    {
+                        <li class="">
+                            <p class="my-0.5 max-w-lg flex ">
+                                <em class="flex-none text-gray-400 dark:text-stone-600 w-12 inline-block">@feedItem.PublishDate.ToString("HH:mm")</em>
+                                <a class="truncate inline-block min-w-0" href="@feedItem.Url" target="_blank">@feedItem.Title</a>
+                            </p>
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        }
+</div>
