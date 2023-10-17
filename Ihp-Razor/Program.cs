@@ -1,6 +1,6 @@
-using Ihp_Blazor.Brokers;
-using Ihp_Blazor.Models;
-using Ihp_Blazor.Services;
+using Ihp_Razor.Brokers;
+using Ihp_Razor.Models;
+using Ihp_Razor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

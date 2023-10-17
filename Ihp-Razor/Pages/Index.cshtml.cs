@@ -1,6 +1,5 @@
-﻿using Ihp_Blazor.Models;
-using Ihp_Blazor.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Ihp_Razor.Models;
+using Ihp_Razor.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Ihp_Razor.Pages;
