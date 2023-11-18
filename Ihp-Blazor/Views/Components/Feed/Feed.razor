@@ -1,28 +1,22 @@
 @using Ihp_Blazor.Models
 @using Ihp_Blazor.Views.Components.FeedItem
-@if (Feeds is not null)
+@foreach (var feed in Feeds)
 {
-    @foreach (var feed in Feeds)
-    {
-        <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
+    <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
 
-            <strong class="dark:text-stone-400">@feed.SiteName</strong>
-            <ul class="feed-items">
-                @foreach (var feedItem in feed.FeedItems)
-                {
-                    <FeedItem SyndicationItem="@feedItem"/>
-                }
-            </ul>
-        </div>
-    }
+        <strong class="dark:text-stone-400">@feed.SiteName</strong>
+        <ul class="feed-items">
+            @foreach (var feedItem in feed.FeedItems)
+            {
+                <FeedItem SyndicationItem="@feedItem"/>
+            }
+        </ul>
+    </div>
 }
-else
-{
-    <p>Loading</p>
 }
 
 @code
 {
     [Parameter]
-    public IEnumerable<LightSyndicationFeed>? Feeds { get; set; }
+    public IEnumerable<LightSyndicationFeed> Feeds { get; set; }
 }

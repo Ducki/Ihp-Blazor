@@ -1,3 +1,4 @@
+using Ihp_Blazor;
 using Ihp_Blazor.Brokers;
 using Ihp_Blazor.Models;
 using Ihp_Blazor.Services;
@@ -5,9 +6,9 @@ using Ihp_Blazor.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddRazorPages(options =>
-    options.RootDirectory = "/Views/Pages");
-builder.Services.AddServerSideBlazor();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents()
+    .AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IFeedSourcesBroker>(_ =>
@@ -31,13 +32,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.UseAntiforgery();
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode()
+    .AddInteractiveWebAssemblyRenderMode();
 
 app.Run();

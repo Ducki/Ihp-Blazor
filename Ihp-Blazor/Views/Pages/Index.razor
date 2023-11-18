@@ -1,12 +1,23 @@
 ﻿@page "/"
 @using Ihp_Blazor.Views.Components.FeedUpdate
-@using Ihp_Blazor.Views.Components.Feed
+@attribute [StreamRendering]
+
 <PageTitle>Index</PageTitle>
 <header class="text-center">
-    <FeedUpdate TriggerUpdate="UpdateTriggered"></FeedUpdate>
+    <!--<FeedUpdate TriggerUpdate="UpdateTriggered"></FeedUpdate>-->
+
+    @DateTime.Now.ToString("HH:mm:ss 'Uhr'")
 </header>
 
 <hr/>
 <div class="flex flex-wrap justify-evenly">
-    <Feed Feeds="@Feeds"/>
+    @if (Feeds != null)
+    {
+        <Feed Feeds="@Feeds"/>
+        <p>hi</p>
+    }
+    else
+    {
+        <p>Loading</p>
+    }
 </div>

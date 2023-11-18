@@ -7,9 +7,10 @@ public partial class FeedUpdate : ComponentBase
     [Parameter] public EventCallback TriggerUpdate { get; set; }
     private DateTimeOffset LastUpdateTime { get; set; }
 
-    protected override void OnInitialized()
+    protected override Task OnInitializedAsync()
     {
         LastUpdateTime = GetCurrentDateTimeOffset();
+        return Task.CompletedTask;
     }
 
     private void UpdateFeeds()
