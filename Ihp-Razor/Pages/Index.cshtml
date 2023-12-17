@@ -5,17 +5,23 @@
 }
 
 <header class="text-center">
-   <h1>Index</h1>
-   <p>Updated <em>@DateTime.Now.ToShortTimeString() Uhr</em></p>
+    <h1>Index</h1>
+    <p>Updated <em>@DateTime.Now.ToShortTimeString() Uhr</em></p>
 </header>
 
 <hr/>
 
 <div class="flex flex-wrap justify-evenly">
-     @foreach (var feed in Model.Feeds)
+    @foreach (var feed in Model.Feeds)
+    {
+        if (feed is null)
+        {
+            <p>Not available</p>
+        }
+        else
         {
             <div class="my-3 mx-1 p-3 border dark:border-stone-700 rounded grow max-w-xl text-sm truncate">
-    
+
                 <strong class="dark:text-stone-400">@feed.SiteName</strong>
                 <ul class="feed-items">
                     @foreach (var feedItem in feed.FeedItems)
@@ -26,9 +32,9 @@
                                 <a class="truncate inline-block min-w-0" href="@feedItem.Url" target="_blank">@feedItem.Title</a>
                             </p>
                         </li>
-
                     }
                 </ul>
             </div>
         }
+    }
 </div>

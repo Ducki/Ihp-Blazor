@@ -4,5 +4,5 @@ namespace Ihp_Razor.Services;
 
 public interface IFeedsService
 {
-    Task<IEnumerable<LightSyndicationFeed>> GetFeeds();
+    Task<IEnumerable<LightSyndicationFeed?>> GetFeeds();
 }

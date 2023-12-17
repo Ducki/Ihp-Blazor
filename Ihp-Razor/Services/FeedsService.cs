@@ -5,20 +5,14 @@ using Ihp_Razor.Models;
 
 namespace Ihp_Razor.Services;
 
-public class FeedsService : IFeedsService
+public class FeedsService(
+    IFeedSourcesBroker feedSourcesBroker,
+    IHttpClientFactory httpClientFactory)
+    : IFeedsService
 {
-    private readonly IFeedSourcesBroker _feedSourcesBroker;
-    private readonly IHttpClientFactory _httpClientFactory;
-
-    public FeedsService(IFeedSourcesBroker feedSourcesBroker, IHttpClientFactory httpClientFactory)
+    public async Task<IEnumerable<LightSyndicationFeed?>> GetFeeds()
     {
-        _feedSourcesBroker = feedSourcesBroker;
-        _httpClientFactory = httpClientFactory;
-    }
-
-    public async Task<IEnumerable<LightSyndicationFeed>> GetFeeds()
-    {
-        var feedUrls = _feedSourcesBroker.GetFeedSources();
+        var feedUrls = feedSourcesBroker.GetFeedSources();
 
         var downloadJobs = feedUrls.Select(url =>
                 DownloadFeedAsync(url.Url))
@@ -29,21 +23,19 @@ public class FeedsService : IFeedsService
         return downloadJobs.Select(d => d.Result).ToList();
     }
 
-    private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
+    private async Task<LightSyndicationFeed?> DownloadFeedAsync(string url)
     {
         var requestUri = new Uri(url);
         Stream responseStream;
 
         try
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = httpClientFactory.CreateClient();
             responseStream = await client.GetStreamAsync(requestUri);
         }
         catch (Exception e)
         {
-            // Try again …
-            Console.WriteLine(e);
-            responseStream = await new HttpClient().GetStreamAsync(requestUri);
+            return null;
         }
 
         var syndicationFeed = ReadSyndicationFeed(responseStream);

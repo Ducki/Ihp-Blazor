@@ -8,7 +8,7 @@ public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
     private readonly IFeedsService _feedsService;
-    public IEnumerable<LightSyndicationFeed> Feeds { get; set; } = new List<LightSyndicationFeed>();
+    public IEnumerable<LightSyndicationFeed?> Feeds { get; set; } = new List<LightSyndicationFeed?>();
 
     public IndexModel(ILogger<IndexModel> logger, IFeedsService feedsService)
     {
