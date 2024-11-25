@@ -29,7 +29,7 @@ public class FeedsService : IFeedsService
         return downloadJobs.Select(d => d.Result).ToList();
     }
 
-    private async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
+    public async Task<LightSyndicationFeed> DownloadFeedAsync(string url)
     {
         var requestUri = new Uri(url);
         Stream responseStream;

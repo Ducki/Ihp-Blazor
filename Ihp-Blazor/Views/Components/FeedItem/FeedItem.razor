@@ -1,6 +1,13 @@
+@using Ihp_Blazor.Models
 <li class="">
     <p class="my-0.5 max-w-lg flex ">
         <em class="flex-none text-gray-400 dark:text-stone-600 w-12 inline-block">@SyndicationItem.PublishDate.ToString("HH:mm")</em>
         <a class="truncate inline-block min-w-0" href="@SyndicationItem.Url" target="_blank">@SyndicationItem.Title</a>
     </p>
 </li>
+
+@code
+
+{
+    [Parameter] public LightSyndicationItem SyndicationItem { get; set; } = null!;
+}

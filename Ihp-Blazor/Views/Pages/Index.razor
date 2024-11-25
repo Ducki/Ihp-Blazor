@@ -1,5 +1,6 @@
 ﻿@page "/"
-@using Ihp_Blazor.Views.Components.FeedUpdate
+@using Ihp_Blazor.Brokers
+@using Ihp_Blazor.Views.Components.Feed
 @attribute [StreamRendering]
 
 <PageTitle>Index</PageTitle>
@@ -11,13 +12,21 @@
 
 <hr/>
 <div class="flex flex-wrap justify-evenly">
-    @if (Feeds != null)
+    @foreach (var feedUrl in FeedSourcesBroker.GetFeedSources())
     {
-        <Feed Feeds="@Feeds"/>
-        <p>hi</p>
-    }
-    else
-    {
-        <p>Loading</p>
+        <Feed FeedUrl="feedUrl"/>
     }
 </div>
+
+@code
+
+{
+    [Inject] private IFeedSourcesBroker FeedSourcesBroker { get; set; } = null!;
+    [Inject] private ILogger<Index> Logger { get; set; } = null!;
+
+    protected override Task OnInitializedAsync()
+    {
+        Logger.LogInformation("First initialization");
+        return Task.CompletedTask;
+    }
+}
